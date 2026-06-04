@@ -316,16 +316,10 @@
                     <button type="submit" class="btn-save">
                         <i class="bi bi-floppy-fill"></i> Save Changes
                     </button>
+                    <button type="button" class="btn-save" style="background: linear-gradient(135deg, #0dcaf0, #0d6efd); margin-top: 0.5rem;" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                        <i class="bi bi-shield-lock-fill"></i> Change Password
+                    </button>
                 </form>
-            </div>
-        </div>
-
-        {{-- Change Password Button --}}
-        <div class="col-md-4">
-            <div class="change-password-card">
-                <button type="button" class="btn-update-photo" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                    <i class="bi bi-shield-lock-fill"></i> Change Password
-                </button>
             </div>
         </div>
 
