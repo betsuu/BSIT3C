@@ -169,6 +169,24 @@
 
     .btn-delete-sm:hover { background: #e11d48; color: #fff; border-color: #e11d48; }
 
+    .btn-add-user {
+        background: linear-gradient(135deg, #0dcaf0, #0d6efd);
+        color: #fff;
+        border: none;
+        padding: 0.55rem 1.2rem;
+        border-radius: 10px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        transition: opacity 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .btn-add-user:hover { opacity: 0.88; color: #fff; }
+
     /* ===== MODALS ===== */
     .modal-content { border: none; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(15,23,42,0.18); }
 
@@ -315,17 +333,7 @@
         <h4>
             <i class="bi bi-people-fill"></i> Users
         </h4>
-        <span style="
-            background: linear-gradient(135deg, #0dcaf0, #0d6efd);
-            color: #fff;
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 0.3rem 0.85rem;
-            border-radius: 999px;
-            font-family: 'DM Mono', monospace;
-            letter-spacing: 0.04em;
-        ">{{ count($user) }} users</span>
-        <button class="btn-edit-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+        <button class="btn-add-user" data-bs-toggle="modal" data-bs-target="#addUserModal">
             <i class="bi bi-plus-lg"></i> Add User
         </button>
     </div>
@@ -379,6 +387,18 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div style="padding: 0.75rem 1rem; border-top: 1px solid #e2e8f0; background: #f8fafc; text-align: right;">
+        <span style="
+            background: linear-gradient(135deg, #0dcaf0, #0d6efd);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.3rem 0.85rem;
+            border-radius: 999px;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.04em;
+        ">{{ count($user) }} users</span>
     </div>
 </div>
 
