@@ -36,4 +36,23 @@ class ProfileController extends Controller
 
       return back()->with('success', 'Profile Updated Successfully');
     }
+
+    public function changePassword(Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'new_password'     => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::find(session('user')->id);
+
+        if (!\Illuminate\Support\Facades\Hash::check($request->current_password, $user->password)) {
+            return back()->with('pw_error', 'Current password is incorrect.');
+        }
+
+        $user->password = \Illuminate\Support\Facades\Hash::make($request->new_password);
+        $user->save();
+        session(['user' => $user]);
+
+        return back()->with('pw_success', 'Password updated successfully.');
+    }
 }

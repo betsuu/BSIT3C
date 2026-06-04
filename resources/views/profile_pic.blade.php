@@ -195,6 +195,15 @@
     }
 
     .btn-save:hover { opacity: 0.88; }
+
+    .change-password-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
+        padding: 1.75rem;
+        margin-top: 1.5rem;
+    }
 </style>
 
 <div class="profile-wrapper">
@@ -306,6 +315,41 @@
 
                     <button type="submit" class="btn-save">
                         <i class="bi bi-floppy-fill"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        {{-- Change Password Card --}}
+        <div class="col-md-4">
+            <div class="change-password-card">
+                <div class="info-card-title">
+                    <i class="bi bi-lock-fill" style="color:#0dcaf0"></i> Change Password
+                </div>
+
+                @if(session('pw_error'))
+                    <div class="alert alert-danger py-2 mb-3" style="font-size:0.8rem">{{ session('pw_error') }}</div>
+                @endif
+                @if(session('pw_success'))
+                    <div class="alert alert-success py-2 mb-3" style="font-size:0.8rem">{{ session('pw_success') }}</div>
+                @endif
+
+                <form action="/changePassword" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="upload-label"><i class="bi bi-lock"></i> Current Password</label>
+                        <input type="password" name="current_password" class="modal-input" placeholder="Enter current password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="upload-label"><i class="bi bi-lock-fill"></i> New Password</label>
+                        <input type="password" name="new_password" id="newPw" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="upload-label"><i class="bi bi-lock-fill"></i> Confirm New Password</label>
+                        <input type="password" name="new_password_confirmation" id="confirmPw" class="modal-input" placeholder="Re-enter new password" minlength="8" required>
+                    </div>
+                    <button type="submit" class="btn-update-photo">
+                        <i class="bi bi-shield-lock-fill"></i> Update Password
                     </button>
                 </form>
             </div>

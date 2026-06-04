@@ -47,6 +47,8 @@ Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile
 
 Route::post('/updateProfile', [ProfileController::class, 'profile']);
 
+Route::post('/changePassword', [ProfileController::class, 'changePassword']);
+
 Route::post('/todo/{id}/done', [ToDoController::class, 'markDone']);
 
 Route::post('/todo/{id}', [ToDoController::class, 'something']);
