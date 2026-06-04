@@ -254,8 +254,13 @@
         {{-- Right: Profile Info Form --}}
         <div class="col-md-8">
             <div class="profile-info-card">
-                <div class="info-card-title">
-                    <i class="bi bi-person-lines-fill"></i> Profile Information
+                <div class="info-card-title" style="justify-content:space-between;">
+                    <span style="display:flex; align-items:center; gap:0.4rem;">
+                        <i class="bi bi-person-lines-fill"></i> Profile Information
+                    </span>
+                    <button type="button" class="btn-update-photo" style="width:auto;" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                        <i class="bi bi-shield-lock-fill"></i> Change Password
+                    </button>
                 </div>
 
                 <form action="/updateProfile" method="POST" enctype="multipart/form-data">
@@ -315,9 +320,6 @@
 
                     <button type="submit" class="btn-save">
                         <i class="bi bi-floppy-fill"></i> Save Changes
-                    </button>
-                    <button type="button" class="btn-save" style="background: linear-gradient(135deg, #0dcaf0, #0d6efd); margin-top: 0.5rem;" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                        <i class="bi bi-shield-lock-fill"></i> Change Password
                     </button>
                 </form>
             </div>
