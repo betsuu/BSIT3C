@@ -14,6 +14,22 @@ class UserController extends Controller
         return view('user', compact('user')); 
     }
 
+    public function addUser(Request $request){
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
+
+        return redirect('/user')->with('success', 'User added successfully.');
+    }
+
     public function updateUser(Request $request, $id){
         $request->validate([
             'name'  => 'required|string|max:255',

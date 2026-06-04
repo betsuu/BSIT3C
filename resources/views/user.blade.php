@@ -325,6 +325,9 @@
             font-family: 'DM Mono', monospace;
             letter-spacing: 0.04em;
         ">{{ count($user) }} users</span>
+        <button class="btn-edit-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="bi bi-plus-lg"></i> Add User
+        </button>
     </div>
 
     <div class="card-table">
@@ -447,3 +450,48 @@
 @endforeach
 
 @endsection
+
+{{-- Add User Modal --}}
+<div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/addUser" method="POST">
+                @csrf
+                <div class="modal-grad-header">
+                    <div>
+                        <div class="mh-title"><i class="bi bi-person-plus-fill"></i> Add User</div>
+                        <div class="mh-sub">Fill in the details below</div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @if($errors->any())
+                        <div class="alert alert-danger py-2 mb-3">
+                            @foreach($errors->all() as $error)
+                                <div style="font-size:0.8rem">{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    @endif
+                    <div class="mb-3">
+                        <label class="modal-label"><i class="bi bi-person-fill"></i> Username</label>
+                        <input type="text" name="name" class="modal-input" placeholder="e.g. John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="modal-label"><i class="bi bi-envelope-fill"></i> Email</label>
+                        <input type="email" name="email" class="modal-input" placeholder="e.g. john@example.com" required>
+                    </div>
+                    <div class="mb-1">
+                        <label class="modal-label"><i class="bi bi-lock-fill"></i> Password</label>
+                        <input type="password" name="password" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-modal-save">
+                        <i class="bi bi-person-plus-fill"></i> Add User
+                    </button>
+                    <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

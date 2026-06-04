@@ -27,6 +27,8 @@ Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
 
 Route::get('/user', [UserController::class, 'showUser'])->name('user');
 
+Route::post('/addUser', [UserController::class, 'addUser']);
+
 Route::post('/updateUser/{id}', [UserController::class, 'updateUser']);
 
 Route::post('/deleteUser/{id}', [UserController::class, 'deleteUser']);
