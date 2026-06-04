@@ -320,42 +320,66 @@
             </div>
         </div>
 
-        {{-- Change Password Card --}}
+        {{-- Change Password Button --}}
         <div class="col-md-4">
             <div class="change-password-card">
-                <div class="info-card-title">
-                    <i class="bi bi-lock-fill" style="color:#0dcaf0"></i> Change Password
+                <button type="button" class="btn-update-photo" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                    <i class="bi bi-shield-lock-fill"></i> Change Password
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{-- Change Password Modal --}}
+<div class="modal fade" id="changePasswordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border: none; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(15,23,42,0.18);">
+            <form action="/changePassword" method="POST">
+                @csrf
+                <div style="background: linear-gradient(135deg, #0dcaf0, #0d6efd); padding: 1.25rem 1.5rem 1rem; display: flex; align-items: flex-start; justify-content: space-between;">
+                    <div>
+                        <div style="font-size:1.1rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:0.4rem; font-family:'DM Sans',sans-serif;">
+                            <i class="bi bi-shield-lock-fill"></i> Change Password
+                        </div>
+                        <div style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'DM Sans',sans-serif;">Update your account password</div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="filter:brightness(0) invert(1); opacity:0.8;"></button>
                 </div>
-
-                @if(session('pw_error'))
-                    <div class="alert alert-danger py-2 mb-3" style="font-size:0.8rem">{{ session('pw_error') }}</div>
-                @endif
-                @if(session('pw_success'))
-                    <div class="alert alert-success py-2 mb-3" style="font-size:0.8rem">{{ session('pw_success') }}</div>
-                @endif
-
-                <form action="/changePassword" method="POST">
-                    @csrf
+                <div style="padding: 1.25rem 1.5rem; font-family:'DM Sans',sans-serif;">
+                    @if(session('pw_error'))
+                        <div class="alert alert-danger py-2 mb-3" style="font-size:0.8rem">{{ session('pw_error') }}</div>
+                    @endif
+                    @if(session('pw_success'))
+                        <div class="alert alert-success py-2 mb-3" style="font-size:0.8rem">{{ session('pw_success') }}</div>
+                    @endif
                     <div class="mb-3">
                         <label class="upload-label"><i class="bi bi-lock"></i> Current Password</label>
                         <input type="password" name="current_password" class="modal-input" placeholder="Enter current password" required>
                     </div>
                     <div class="mb-3">
                         <label class="upload-label"><i class="bi bi-lock-fill"></i> New Password</label>
-                        <input type="password" name="new_password" id="newPw" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
+                        <input type="password" name="new_password" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label class="upload-label"><i class="bi bi-lock-fill"></i> Confirm New Password</label>
-                        <input type="password" name="new_password_confirmation" id="confirmPw" class="modal-input" placeholder="Re-enter new password" minlength="8" required>
+                        <input type="password" name="new_password_confirmation" class="modal-input" placeholder="Re-enter new password" minlength="8" required>
                     </div>
-                    <button type="submit" class="btn-update-photo">
+                </div>
+                <div style="padding: 1rem 1.5rem; border-top: 1px solid #f1f5f9; display:flex; gap:0.5rem;">
+                    <button type="submit" class="btn-update-photo" style="flex:1;">
                         <i class="bi bi-shield-lock-fill"></i> Update Password
                     </button>
-                </form>
-            </div>
+                    <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal" style="background:#f1f5f9; color:#64748b; border:none; padding:0.65rem 1.1rem; border-radius:9px; font-size:0.875rem; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif;">Cancel</button>
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
+
+@if(session('pw_error') || session('pw_success'))
+<script>window.addEventListener('DOMContentLoaded', () => new bootstrap.Modal(document.getElementById('changePasswordModal')).show());</script>
+@endif
 
 @endsection
