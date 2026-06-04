@@ -70,3 +70,50 @@
 </div>
 
 @endsection
+
+@if(session('error') && str_contains(session('error'), 'match') || $errors->has('confirmpassword'))
+<script>
+    window.addEventListener('DOMContentLoaded', () => showToast());
+</script>
+@endif
+
+<style>
+    .toast-error {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: linear-gradient(135deg, #e11d48, #be123c);
+        color: #fff;
+        padding: 0.85rem 1.2rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 8px 24px rgba(225,29,72,0.3);
+        z-index: 9999;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .toast-error.show { opacity: 1; transform: translateY(0); }
+</style>
+
+<div class="toast-error" id="passwordToast">
+    <i class="bi bi-exclamation-circle-fill"></i> Passwords do not match.
+</div>
+
+<script>
+function showToast() {
+    const toast = document.getElementById('passwordToast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+document.getElementById('confirmpassword').addEventListener('input', function () {
+    if (this.value && this.value !== document.getElementById('password').value) {
+        showToast();
+    }
+});
+</script>
