@@ -500,9 +500,13 @@
                         <label class="modal-label"><i class="bi bi-envelope-fill"></i> Email</label>
                         <input type="email" name="email" class="modal-input" placeholder="e.g. john@example.com" required>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-3">
                         <label class="modal-label"><i class="bi bi-lock-fill"></i> Password</label>
-                        <input type="password" name="password" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
+                        <input type="password" name="password" id="addUserPassword" class="modal-input" placeholder="Min. 8 characters" minlength="8" required>
+                    </div>
+                    <div class="mb-1">
+                        <label class="modal-label"><i class="bi bi-lock-fill"></i> Confirm Password</label>
+                        <input type="password" name="password_confirmation" id="addUserConfirmPassword" class="modal-input" placeholder="Re-enter password" minlength="8" required>
                     </div>
                 </div>
                 <div class="modal-footer">
